@@ -20,4 +20,13 @@ from django.contrib.auth.views import LogoutView,LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('student/',include('student.urls')),
+    
+    path('admin-student', views.admin_student_view,name='admin-student'),
+    path('admin-view-student', views.admin_view_student_view,name='admin-view-student'),
+    path('admin-view-student-marks', views.admin_view_student_marks_view,name='admin-view-student-marks'),
+    path('admin-view-marks/<int:pk>', views.admin_view_marks_view,name='admin-view-marks'),
+    path('admin-check-marks/<int:pk>', views.admin_check_marks_view,name='admin-check-marks'),
+    path('update-student/<int:pk>', views.update_student_view,name='update-student'),
+    path('delete-student/<int:pk>', views.delete_student_view,name='delete-student'),
 ]
