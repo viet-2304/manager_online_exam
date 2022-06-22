@@ -19,6 +19,9 @@ def teacherclick_view(request):
         return HttpResponseRedirect('afterlogin')
     return render(request,'teacher/teacherclick.html')
 
+def is_teacher(user):
+    return user.groups.filter(name='TEACHER').exists()
+
 def teacher_signup_view(request):
     userForm=forms.TeacherUserForm()
     teacherForm=forms.TeacherForm()
@@ -40,8 +43,6 @@ def teacher_signup_view(request):
 
 
 
-def is_teacher(user):
-    return user.groups.filter(name='TEACHER').exists()
 
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
@@ -54,7 +55,11 @@ def teacher_dashboard_view(request):
     }
     return render(request,'teacher/teacher_dashboard.html',context=dict)
 
+
 @login_required(login_url='teacherlogin')
+
+@login_required(login_url='teacherlogin')
+#
 @user_passes_test(is_teacher)
 def teacher_exam_view(request):
     return render(request,'teacher/teacher_exam.html')
