@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Teacher(models.Model):
-    # kết nối hai bảng, với mỗi bản ghi trong bảng đầu tiên, sẽ có một bản ghi tương ứng trong bảng thứ hai
+
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='profile_pic/Teacher/',null=True,blank=True)
     address = models.CharField(max_length=40)

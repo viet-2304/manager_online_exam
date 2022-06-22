@@ -44,7 +44,6 @@ def teacher_signup_view(request):
 
 
 
-
 @login_required(login_url='teacherlogin')
 @user_passes_test(is_teacher)
 def teacher_dashboard_view(request):
@@ -55,9 +54,12 @@ def teacher_dashboard_view(request):
     'total_student':SMODEL.Student.objects.all().count()
     }
     return render(request,'teacher/teacher_dashboard.html',context=dict)
-# Check login va khong cho truy cap link neu chua login
+
+
 @login_required(login_url='teacherlogin')
-# quản lý quyền truy cập vào chế độ xem :
+
+@login_required(login_url='teacherlogin')
+#
 @user_passes_test(is_teacher)
 def teacher_exam_view(request):
     return render(request,'teacher/teacher_exam.html')
